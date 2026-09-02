@@ -13,7 +13,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/caiodiniz-developer/API-academia/issues"
   },
@@ -23,5 +23,8 @@
     "tsup": "^8.5.1",
     "tsx": "^4.23.13",
     "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "fastify": "^5.12.1"
   }
 }
