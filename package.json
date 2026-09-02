@@ -21,7 +21,9 @@
   },
   "homepage": "https://github.com/caiodiniz-developer/API-academia#readme",
   "devDependencies": {
+    "@rocketseat/eslint-config": "2.2.2",
     "@types/node": "^26.4.1",
+    "eslint": "8.57.1",
     "tsup": "^8.5.1",
     "tsx": "^4.23.13",
     "typescript": "^7.0.2"
