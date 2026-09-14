@@ -17,6 +17,8 @@ model User {
 
 model CheckIn {
   id String @id @default(uuid())
+
+   @@map("check_in")
 }
 
 model Gym {
@@ -26,4 +28,6 @@ model Gym {
   phone String?
   latitude Decimal
   longitude Decimal
+
+  @@map("gyms")
 }
