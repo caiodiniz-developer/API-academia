@@ -21,4 +21,9 @@ model CheckIn {
 
 model Gym {
   id String @id @default(uuid())
+  title String
+  description String?
+  phone String?
+  latitude Decimal
+  longitude Decimal
 }
