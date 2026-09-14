@@ -23,6 +23,9 @@ model CheckIn {
   created_at DateTime @default(now())
   validated_at DateTime?
 
+  user_id String
+  gym_id String
+
    @@map("check_in")
 }
 
