@@ -18,3 +18,7 @@ model User {
 model CheckIn {
   id String @id @default(uuid())
 }
+
+model Gym {
+  id String @id @default(uuid())
+}
