@@ -1,11 +1,10 @@
 import fastify from "fastify";
 import { z } from "zod";
+import { prisma } from "./lib/prisma.js";
 
 export const app = fastify();
 
-
-
-app.post("/users", (request, reply) => {
+app.post("/users", async (request, reply) => {
   const registerBodySchema = z.object({
     name: z.string(),
     email: z.string().email(),
@@ -14,5 +13,13 @@ app.post("/users", (request, reply) => {
 
   const { name, email, password } = registerBodySchema.parse(request.body);
 
-  await
+  await prisma.user.create({
+    data: {
+      name,
+      email,
+      password_hash: password,
+    },
+  });
+
+  return reply.status(201);
 });
