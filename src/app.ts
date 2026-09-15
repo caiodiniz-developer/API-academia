@@ -1,10 +1,12 @@
 import fastify from "fastify";
-import { PrismaPg } from "@prisma/adapter-pg";
-import { PrismaClient } from "./generated/prisma/client.js";
-import { env } from "./env/index.js";
+import { z } from "zod";
 
 export const app = fastify();
 
-const adapter = new PrismaPg({ connectionString: env.DATABASE_URL });
-
-export const prisma = new PrismaClient({ adapter });
+app.post("/users", (request, reply) => {
+  const registerBodySchema = z.object({
+    name: z.string(),
+    email: z.string().email(),
+    password: z.string().min(6),
+  });
+});
