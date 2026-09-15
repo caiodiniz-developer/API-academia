@@ -3,6 +3,8 @@ import { z } from "zod";
 
 export const app = fastify();
 
+
+
 app.post("/users", (request, reply) => {
   const registerBodySchema = z.object({
     name: z.string(),
@@ -11,4 +13,6 @@ app.post("/users", (request, reply) => {
   });
 
   const { name, email, password } = registerBodySchema.parse(request.body);
+
+  await
 });
