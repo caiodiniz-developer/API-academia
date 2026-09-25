@@ -1,5 +1,6 @@
 import { hash } from "bcryptjs";
 import { prisma } from "../lib/prisma.js";
+import { PrismaUserRepository } from "../repositories/prisma-users-repoository.js";
 
 interface RegisterUseCaseRequest {
   name: string;
@@ -24,4 +25,5 @@ export async function registerUseCase({
     throw new Error("Email already existe.");
   }
 
+  const prismaUsersRepository = new PrismaUserRepository();
 }
