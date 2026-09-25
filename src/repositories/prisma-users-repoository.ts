@@ -1,4 +1,4 @@
-import type { Prisma } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 
 export class InMemoryUsersRepository {
   public users: any[] = [];
