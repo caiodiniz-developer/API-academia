@@ -1,4 +1,4 @@
-import { hash } from "crypto";
+import { hash } from "bcryptjs";
 import { prisma } from "../lib/prisma.js";
 
 interface RegisterUseCaseRequest {
@@ -21,14 +21,7 @@ export async function registerUseCase({
   });
 
   if (userWithSameEmail) {
-    throw new Error('Email already existe.')
+    throw new Error("Email already existe.");
   }
 
-  await prisma.user.create({
-    data: {
-      name,
-      email,
-      password_hash,
-    },
-  });
 }
