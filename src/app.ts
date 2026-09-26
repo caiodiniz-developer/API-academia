@@ -7,9 +7,11 @@ export const app = fastify();
 app.register(appRoutes);
 
 app.setErrorHandler((error, request, reply) => {
-  if(error instanceof ZodError){
+  if (error instanceof ZodError) {
     return reply
-    .status(400)
-    .send({message: 'Validation error.', issues: error.format()})
+      .status(400)
+      .send({ message: "Validation error.", issues: error.format() });
   }
+
+  return reply.status(500).send({ message: "Internal server error." });
 });
