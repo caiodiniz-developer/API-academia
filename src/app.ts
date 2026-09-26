@@ -7,7 +7,7 @@ export const app = fastify();
 
 app.register(appRoutes);
 
-app.setErrorHandler((error, request, reply) => {
+app.setErrorHandler((error, _, reply) => {
   if (error instanceof ZodError) {
     return reply
       .status(400)
@@ -15,6 +15,8 @@ app.setErrorHandler((error, request, reply) => {
   }
   if (env.NODE_ENV !== "production") {
     console.error(error);
+  } else {
+    //TODO: here we should log to an external tool like DataDOg/newRelic/Sentry
   }
 
   return reply.status(500).send({ message: "Internal server error." });
