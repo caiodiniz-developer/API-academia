@@ -9,12 +9,16 @@ class InMemoryUserRepository implements UsersRepository {
     throw new Error("Method not implemented.");
   }
   async create(data: UserCreateInput) {
-    return {
+    const user = {
       id: "user-1",
       name: data.name,
       email: data.email,
       password_hash: data.password_hash,
       created_at: new Date(),
     };
+
+    this.items.push(user);
+
+    return user;
   }
 }
