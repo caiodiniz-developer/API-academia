@@ -11,6 +11,8 @@ class InMemoryUserRepository implements UsersRepository {
     if (!user) {
       return null;
     }
+
+    return user
   }
   async create(data: UserCreateInput) {
     const user = {
