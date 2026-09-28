@@ -8,6 +8,10 @@ interface RegisterUseCaseRequest {
   password: string;
 }
 
+interface registerUseCaseResponse {
+  user: User;
+}
+
 export class RegisterUseCase {
   constructor(private usersRepository: UsersRepository) {}
 
@@ -20,11 +24,11 @@ export class RegisterUseCase {
       throw new UserAlreadyExistsError();
     }
 
-   const user = await this.usersRepository.create({
+    const user = await this.usersRepository.create({
       name,
       email,
       password_hash,
     });
-    return user
+    return { user };
   }
 }
