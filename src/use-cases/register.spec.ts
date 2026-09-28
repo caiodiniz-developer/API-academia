@@ -5,6 +5,7 @@ import { compare } from "bcryptjs";
 
 describe("Register Use Case", () => {
   it("should hash user password upon registration", async () => {
+    const usersRepository = new InMemoryUserRepository();
     const registerUseCase = new RegisterUseCase({
       async findByEmail(email) {
         return null;
