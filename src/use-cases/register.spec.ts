@@ -15,9 +15,6 @@ describe("Register Use Case", () => {
       email: "johndoe@example.com",
       password: "123456",
     });
-
-    const isPassWordCorrectHashed = await compare("123456", user.password_hash);
-    expect(isPassWordCorrectHashed).toBe(true);
   });
 
   it("should hash user password upon registration", async () => {
