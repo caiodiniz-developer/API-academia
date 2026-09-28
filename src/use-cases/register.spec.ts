@@ -23,9 +23,11 @@ describe("Register Use Case", () => {
     const usersRepository = new InMemoryUserRepository();
     const registerUseCase = new RegisterUseCase(usersRepository);
 
+    const email = "caiodiniz@email.com";
+
     const { user } = await registerUseCase.execute({
       name: "John Doe",
-      email: "johndoe@example.com",
+      email,
       password: "123456",
     });
 
