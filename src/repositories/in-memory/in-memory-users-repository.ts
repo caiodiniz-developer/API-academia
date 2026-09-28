@@ -2,7 +2,7 @@ import type { User } from "../../generated/prisma/client.js";
 import type { UserCreateInput } from "../../generated/prisma/models.js";
 import type { UsersRepository } from "../prisma-users-repository.js";
 
-class InMemoryUserRepository implements UsersRepository {
+export class InMemoryUserRepository implements UsersRepository {
   public items: User[] = [];
 
   async findByEmail(email: string) {
