@@ -1,5 +1,7 @@
-import { expect, test } from "vitest";
+import { expect, describe, it } from "vitest";
 
-test("Check of ot works", () => {
-  expect(2 + 2).toBe(4);
-});
+describe('Register Use Case', () =>{
+  it('should hash user password upon registration', () =>{
+    
+  })
+})
