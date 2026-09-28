@@ -6,7 +6,7 @@ class InMemoryUserRepository implements UsersRepository {
   public items: User[] = [];
 
   async findByEmail(email: string) {
-    throw new Error("Method not implemented.");
+    const user=
   }
   async create(data: UserCreateInput) {
     const user = {
