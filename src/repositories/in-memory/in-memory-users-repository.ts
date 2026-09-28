@@ -7,6 +7,10 @@ class InMemoryUserRepository implements UsersRepository {
 
   async findByEmail(email: string) {
     const user = this.items.find((item) => item.email === email);
+
+    if (!user) {
+      return null;
+    }
   }
   async create(data: UserCreateInput) {
     const user = {
