@@ -15,5 +15,6 @@ describe("Register Use Case", () => {
     });
 
     const isPassWordCorrectHashed = await compare("123456", user.password_hash);
+    expect(isPassWordCorrectHashed).toBe(true);
   });
 });
