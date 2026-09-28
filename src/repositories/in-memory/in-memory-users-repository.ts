@@ -3,10 +3,10 @@ import type { UserCreateInput } from "../../generated/prisma/models.js";
 import type { UsersRepository } from "../prisma-users-repository.js";
 
 class InMemoryUserRepository implements UsersRepository {
-  findByEmail(email: string): unknown {
+  async findByEmail(email: string) {
     throw new Error("Method not implemented.");
   }
-  create(data: UserCreateInput): Promise<User> {
+  async create(data: UserCreateInput){
     throw new Error("Method not implemented.");
   }
 }
