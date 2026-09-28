@@ -25,13 +25,17 @@ describe("Register Use Case", () => {
 
     const email = "caiodiniz@email.com";
 
-    const { user } = await registerUseCase.execute({
+    await registerUseCase.execute({
       name: "John Doe",
       email,
       password: "123456",
     });
 
-    const isPassWordCorrectHashed = await compare("123456", user.password_hash);
-    expect(isPassWordCorrectHashed).toBe(true);
+    expect(()=>
+    registerUseCase.execute({
+      name: "John Doe",
+      email,
+      password: "123456",
+    });)
   });
 });
