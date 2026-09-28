@@ -6,7 +6,13 @@ class InMemoryUserRepository implements UsersRepository {
   async findByEmail(email: string) {
     throw new Error("Method not implemented.");
   }
-  async create(data: UserCreateInput){
-    throw new Error("Method not implemented.");
+  async create(data: UserCreateInput) {
+    return {
+      id: "user-1",
+      name: data.name,
+      email: data.email,
+      password_hash: data.password_hash,
+      created_at: new Date(),
+    };
   }
 }
