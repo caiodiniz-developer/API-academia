@@ -1,9 +1,8 @@
-import { expect, describe, it } from "vitest";
+import { expect, describe, it, beforeEach } from "vitest";
 import { InMemoryUserRepository } from "../repositories/in-memory/in-memory-users-repository.js";
 import { AuthenticateUseCase } from "./authenticate.js";
 import { hash } from "bcryptjs";
 import { InvalidCredentialsError } from "./errors/invalid-credentials-error.js";
-import { beforeEach } from "node:test";
 
 let usersRepository: InMemoryUserRepository;
 let sut: AuthenticateUseCase;
