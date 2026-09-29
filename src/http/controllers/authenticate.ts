@@ -1,13 +1,14 @@
 import type { FastifyRequest, FastifyReply } from "fastify";
 import { z } from "zod";
 import { PrismaUsersRepository } from "../../repositories/prisma/prisma-users-repository.js";
+import type { UsersRepository } from "../../repositories/users-repository.js";
 import { AuthenticateUseCase } from "../../use-cases/authenticate.js";
 import { InvalidCredentialsError } from "../../use-cases/errors/invalid-credentials-error.js";
 
 function makeAuthenticateUseCase() {
   const usersRepository = new PrismaUsersRepository();
 
-  return new AuthenticateUseCase(usersRepository);
+  return new AuthenticateUseCase(usersRepository as unknown as UsersRepository);
 }
 
 export async function authenticate(
