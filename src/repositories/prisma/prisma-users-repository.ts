@@ -1,6 +1,21 @@
-import type { Prisma, User } from "../generated/prisma/client.js";
+import { prisma } from "../../lib/prisma.js";
+import type { Prisma } from "../../generated/prisma/client.js";
+import type { UsersRepository } from "../users-repository.js";
 
-export interface UsersRepository {
-  findByEmail(email: string): unknown;
-  create(data: Prisma.UserCreateInput): Promise<User>;
+export class PrismaUsersRepository implements UsersRepository {
+  async findByEmail(email: string) {
+    const user = await prisma.user.findUnique({
+      where: { email },
+    });
+
+    return user;
+  }
+
+  async create(data: Prisma.UserCreateInput) {
+    const user = await prisma.user.create({
+      data,
+    });
+
+    return user;
+  }
 }

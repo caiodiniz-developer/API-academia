@@ -1,6 +1,6 @@
 import type { User } from "../../generated/prisma/client.js";
 import type { UserCreateInput } from "../../generated/prisma/models.js";
-import type { UsersRepository } from "../prisma-users-repository.js";
+import type { UsersRepository } from "../users-repository.js";
 
 export class InMemoryUserRepository implements UsersRepository {
   public items: User[] = [];
