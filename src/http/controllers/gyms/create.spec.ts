@@ -28,4 +28,32 @@ describe("Create Gym (e2e)", () => {
 
     expect(response.statusCode).toEqual(201);
   });
+
+  it("should not be able to create a gym as a member", async () => {
+    await request(app.server).post("/users").send({
+      name: "Jane Doe",
+      email: "janedoe@example.com",
+      password: "123456",
+    });
+
+    const authResponse = await request(app.server).post("/sessions").send({
+      email: "janedoe@example.com",
+      password: "123456",
+    });
+
+    const { token } = authResponse.body;
+
+    const response = await request(app.server)
+      .post("/gyms")
+      .set("Authorization", `Bearer ${token}`)
+      .send({
+        title: "JavaScript Gym",
+        description: "Some description.",
+        phone: "1199999999",
+        latitude: -27.2092052,
+        longitude: -49.6401091,
+      });
+
+    expect(response.statusCode).toEqual(401);
+  });
 });

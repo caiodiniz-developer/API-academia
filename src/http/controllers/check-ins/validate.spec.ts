@@ -48,4 +48,45 @@ describe("Validate Check-in (e2e)", () => {
 
     expect(checkIn.validated_at).toEqual(expect.any(Date));
   });
+
+  it("should not be able to validate a check-in as a member", async () => {
+    await request(app.server).post("/users").send({
+      name: "Jane Doe",
+      email: "janedoe@example.com",
+      password: "123456",
+    });
+
+    const authResponse = await request(app.server).post("/sessions").send({
+      email: "janedoe@example.com",
+      password: "123456",
+    });
+
+    const { token } = authResponse.body;
+
+    const user = await prisma.user.findUniqueOrThrow({
+      where: { email: "janedoe@example.com" },
+    });
+
+    const gym = await prisma.gym.create({
+      data: {
+        title: "TypeScript Gym",
+        latitude: -27.2092052,
+        longitude: -49.6401091,
+      },
+    });
+
+    const checkIn = await prisma.checkIn.create({
+      data: {
+        gym_id: gym.id,
+        user_id: user.id,
+      },
+    });
+
+    const response = await request(app.server)
+      .patch(`/check-ins/${checkIn.id}/validate`)
+      .set("Authorization", `Bearer ${token}`)
+      .send();
+
+    expect(response.statusCode).toEqual(401);
+  });
 });
