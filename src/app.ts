@@ -2,6 +2,7 @@ import fastify from "fastify";
 import fastifyJwt from "@fastify/jwt";
 import { usersRoutes } from "./http/controllers/users/routes.js";
 import { gymsRoutes } from "./http/controllers/gyms/routes.js";
+import { checkInsRoutes } from "./http/controllers/check-ins/routes.js";
 import { ZodError } from "zod";
 import { env } from "./env/index.js";
 
@@ -13,6 +14,7 @@ app.register(fastifyJwt, {
 
 app.register(usersRoutes);
 app.register(gymsRoutes);
+app.register(checkInsRoutes);
 
 app.setErrorHandler((error, _, reply) => {
   if (error instanceof ZodError) {
