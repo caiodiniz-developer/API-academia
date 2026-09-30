@@ -3,12 +3,6 @@ import { z } from "zod";
 import { InvalidCredentialsError } from "../../use-cases/errors/invalid-credentials-error.js";
 import { makeAuthenticateUseCase } from "../../use-cases/factories/make-authenticate-use-case.js";
 
-function makeAuthenticateUseCase() {
-  const usersRepository = new PrismaUsersRepository();
-
-  return new AuthenticateUseCase(usersRepository as unknown as UsersRepository);
-}
-
 export async function authenticate(
   request: FastifyRequest,
   reply: FastifyReply,
